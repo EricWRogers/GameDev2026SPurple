@@ -1,6 +1,4 @@
 using JetBrains.Annotations;
-using Unity.Collections;
-using Unity.VectorGraphics;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
@@ -9,6 +7,7 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     public UnityEvent flipFlop;
+    public GameObject[] flipableObjects;
     InputAction moveAction;
     InputAction jumpAction;
     Vector2 moveValue;
@@ -17,12 +16,15 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D rb;
     public float forceMultiplier = 10;
     public float jumpMultiplier = 20;
+    public float cooldown = 10;
+    public float maxCooldown = 10;
+    public float flipCooldown = 0;
+    public float maxFlipCooldown = 520;
     public GameObject canvas;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private float groundCheckDistance = 0.1f;
     void Start()
     {
-        GameObject.Find("Canvas").SetActive(false);
         moveAction = InputSystem.actions.FindAction("Move");
         jumpAction = InputSystem.actions.FindAction("Jump");
         rb = GetComponent<Rigidbody2D>();
@@ -41,6 +43,16 @@ public class PlayerController : MonoBehaviour
             rb.AddForce(new Vector2(0.0f, jumpMultiplier));
             jumpValue = false;
         }
+        if (cooldown > 0)
+        {
+            cooldown--;
+        }
+        if (flipCooldown > 1) flipCooldown--;
+        else if (flipCooldown == 1)
+        {
+            flipFlop.Invoke();
+            flipCooldown = 0;
+        }
     }
     bool IsGrounded()
     {
@@ -49,9 +61,21 @@ public class PlayerController : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Enemy")
+        if (collision.gameObject.tag == "Enemy" && cooldown <= 0)
         {
-            canvas.SetActive(true);
+            flipFlop.Invoke();
+            flipCooldown = maxFlipCooldown;
+            cooldown = maxCooldown;
+        }
+    }
+
+    public void flipWorld()
+    {
+        flipableObjects = GameObject.FindGameObjectsWithTag("Flipable");
+        foreach (GameObject gameObject in flipableObjects)
+        {
+            gameObject.GetComponent<SpriteRenderer>().enabled = !gameObject.GetComponent<SpriteRenderer>().enabled;
+            gameObject.GetComponent<BoxCollider2D>().enabled = !gameObject.GetComponent<BoxCollider2D>().enabled;
         }
     }
 }

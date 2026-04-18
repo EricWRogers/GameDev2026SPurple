@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - Platform
+  - Flipable
   layers:
   - Default
   - TransparentFX
