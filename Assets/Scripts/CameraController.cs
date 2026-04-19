@@ -4,9 +4,10 @@ public class CameraController : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public GameObject quarter;
+    AudioSource audioSource;
     void Start()
     {
-        
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -19,5 +20,10 @@ public class CameraController : MonoBehaviour
         else if (quarter.transform.position.x < transform.position.x - 4) {
             transform.position = new Vector3(quarter.transform.position.x + 4, transform.position.y, transform.position.z);
         }
+    }
+
+    public void flipFlopSound()
+    {
+        audioSource.Play();
     }
 }

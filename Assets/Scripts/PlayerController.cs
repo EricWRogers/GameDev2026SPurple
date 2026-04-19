@@ -6,8 +6,10 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField] private AudioClip[] audioClips;
     public UnityEvent flipFlop;
     public GameObject[] flipableObjects;
+    AudioSource audioSource;
     InputAction moveAction;
     InputAction jumpAction;
     Vector2 moveValue;
@@ -28,6 +30,7 @@ public class PlayerController : MonoBehaviour
         moveAction = InputSystem.actions.FindAction("Move");
         jumpAction = InputSystem.actions.FindAction("Jump");
         rb = GetComponent<Rigidbody2D>();
+        audioSource = GetComponent<AudioSource>();
     }
     void Update()
     {
@@ -40,6 +43,7 @@ public class PlayerController : MonoBehaviour
         rb.linearVelocityX = rb.linearVelocityX * 0.85f;
         if (jumpValue && IsGrounded())
         {
+            audioSource.PlayOneShot(audioClips[0]);
             rb.AddForce(new Vector2(0.0f, jumpMultiplier));
             jumpValue = false;
         }
