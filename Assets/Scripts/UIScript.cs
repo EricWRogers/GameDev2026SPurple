@@ -2,21 +2,14 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CanvasScript : MonoBehaviour
+public class UIScript : MonoBehaviour
 {
-    public Image image;
     public TMP_Text deathField;
     public GameObject player;
     public PlayerController playerController;
     void Start()
     {
-        image = GetComponent<Image>();
-        image.enabled = false;
         playerController = player.GetComponent<PlayerController>();
-    }
-    public void ToggleActive()
-    {
-        image.enabled = !image.enabled;
     }
 
     public void FixedUpdate()

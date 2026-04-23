@@ -9,21 +9,26 @@ public class PennyAI : MonoBehaviour
     public float speed = 1.0f;
     public int counter = 100;
     public int maxCount = 100;
+    public PlayerController playerController;
+    public GameObject player;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         boxCollider = GetComponent<BoxCollider2D>();
+        playerController = player.GetComponent<PlayerController>();
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        rb.linearVelocityX = sign * speed;
-        counter--;
-        if (counter <= 0)
-        {
-            counter = maxCount;
-            sign *= -1;
+        if (!playerController.flipped) {
+            rb.linearVelocityX = sign * speed;
+            counter--;
+            if (counter <= 0)
+            {
+                counter = maxCount;
+                sign *= -1;
+            }
         }
     }
 }

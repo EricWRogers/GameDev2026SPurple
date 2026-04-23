@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private AudioClip[] audioClips;
     public UnityEvent flipFlop;
     public GameObject[] flipableObjects;
+    public GameObject[] enemies;
     AudioSource audioSource;
     InputAction moveAction;
     InputAction jumpAction;
@@ -22,6 +23,8 @@ public class PlayerController : MonoBehaviour
     public float maxCooldown = 10;
     public float flipCooldown = 0;
     public float maxFlipCooldown = 520;
+    public bool flipped = false;
+    public int deaths = 0;
     public GameObject canvas;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private float groundCheckDistance = 0.1f;
@@ -39,6 +42,7 @@ public class PlayerController : MonoBehaviour
     }
     void FixedUpdate()
     {
+        Debug.Log(flipped);
         rb.AddForce(moveValue * forceMultiplier);
         rb.linearVelocityX = rb.linearVelocityX * 0.85f;
         if (jumpValue && IsGrounded())
@@ -65,11 +69,12 @@ public class PlayerController : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Enemy" && cooldown <= 0)
+        if (collision.gameObject.tag == "Enemy" && cooldown <= 0 && !flipped)
         {
             flipFlop.Invoke();
             flipCooldown = maxFlipCooldown;
             cooldown = maxCooldown;
+            deaths++;
         }
     }
 
@@ -81,5 +86,7 @@ public class PlayerController : MonoBehaviour
             gameObject.GetComponent<SpriteRenderer>().enabled = !gameObject.GetComponent<SpriteRenderer>().enabled;
             gameObject.GetComponent<BoxCollider2D>().enabled = !gameObject.GetComponent<BoxCollider2D>().enabled;
         }
+        enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        flipped = !flipped;//Please work bro
     }
 }
