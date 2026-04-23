@@ -30,5 +30,9 @@ public class PennyAI : MonoBehaviour
                 sign *= -1;
             }
         }
+        else
+        {
+            rb.linearVelocityX = 0;
+        }
     }
 }

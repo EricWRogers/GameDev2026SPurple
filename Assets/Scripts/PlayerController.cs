@@ -26,6 +26,8 @@ public class PlayerController : MonoBehaviour
     public bool flipped = false;
     public int deaths = 0;
     public GameObject canvas;
+    public GameObject corpse;
+    public SpriteRenderer spriteRenderer;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private float groundCheckDistance = 0.1f;
     void Start()
@@ -34,15 +36,27 @@ public class PlayerController : MonoBehaviour
         jumpAction = InputSystem.actions.FindAction("Jump");
         rb = GetComponent<Rigidbody2D>();
         audioSource = GetComponent<AudioSource>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
     void Update()
     {
+        //DEBUG INPUTS TO REMOVE LATER
+        if (Keyboard.current.fKey.wasPressedThisFrame) flipFlop.Invoke();
+        if (Keyboard.current.cKey.wasPressedThisFrame) Instantiate(corpse, transform.position, transform.rotation);
+
+
         moveValue.x = moveAction.ReadValue<Vector2>().x;
         jumpValue |= jumpAction.WasPressedThisFrame();
     }
     void FixedUpdate()
     {
-        Debug.Log(flipped);
+        if (moveValue.x < 0)
+        {
+            spriteRenderer.flipX = true;
+        } else if (moveValue.x > 0)
+        {
+            spriteRenderer.flipX = false;
+        }
         rb.AddForce(moveValue * forceMultiplier);
         rb.linearVelocityX = rb.linearVelocityX * 0.85f;
         if (jumpValue && IsGrounded())
@@ -72,6 +86,7 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.tag == "Enemy" && cooldown <= 0 && !flipped)
         {
             flipFlop.Invoke();
+            Instantiate(corpse, transform.position, transform.rotation);
             flipCooldown = maxFlipCooldown;
             cooldown = maxCooldown;
             deaths++;

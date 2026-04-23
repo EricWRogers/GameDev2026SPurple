@@ -569,7 +569,7 @@ GameObject:
   - component: {fileID: 442818680}
   - component: {fileID: 442818682}
   m_Layer: 0
-  m_Name: Quarter
+  m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -624,7 +624,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Sprite: {fileID: -2311659948842064771, guid: 41cd7c97b4794314381f01fc1b42be39, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -644,7 +644,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2.41103, y: 1.72476, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -710,17 +710,17 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.021180272, y: 0.015885293}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 0.51, y: 1.2}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.35752964, y: 1.1447324}
   m_EdgeRadius: 0
 --- !u!114 &442818680
 MonoBehaviour:
@@ -786,10 +786,12 @@ MonoBehaviour:
   flipped: 0
   deaths: 0
   canvas: {fileID: 168785629}
+  corpse: {fileID: 7995815571456967707, guid: 9df833eeb38a542e5874c086b310dee7, type: 3}
+  spriteRenderer: {fileID: 0}
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
-  groundCheckDistance: 0.55
+  groundCheckDistance: 1.13
 --- !u!114 &442818681
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1060,7 +1062,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_MaskInteraction: 0
   m_Sprite: {fileID: -6345030913950261942, guid: 7b522c7c3548741439c9f127ebc8c324, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1585,7 +1587,7 @@ GameObject:
   - component: {fileID: 1307553816}
   - component: {fileID: 1307553815}
   - component: {fileID: 1307553814}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Penny
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -1617,7 +1619,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1307553813}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -1750,7 +1752,7 @@ Transform:
   m_GameObject: {fileID: 1307553813}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 22.65, y: 0.53, z: 0}
+  m_LocalPosition: {x: 22.65, y: 0.392, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1840,8 +1842,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 200
-  m_fontSizeBase: 200
+  m_fontSize: 500
+  m_fontSizeBase: 500
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
