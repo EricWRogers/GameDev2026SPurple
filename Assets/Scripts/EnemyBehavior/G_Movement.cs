@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// apply this script to basic enemy types
+// script does require you to set theiir movement paths
+
 public class G_movements : MonoBehaviour
 {
     public GameObject PointA;
@@ -12,8 +15,6 @@ public class G_movements : MonoBehaviour
     public float speed;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
-    {
-        
     {   //animations can be added in
         rb = GetComponent <Rigidbody2D>();
         //anim = GetComponent <Animator>();
@@ -27,8 +28,10 @@ public class G_movements : MonoBehaviour
         //makes the enemy manuever based to where the points are
         Vector2 point = cPoint.position - transform.position;
         if(cPoint == PointB.transform)
+        {
             rb.linearVelocity= new Vector2(speed, 0);
 
+        }
         else
         {
             rb.linearVelocity = new Vector2(-speed, 0);
