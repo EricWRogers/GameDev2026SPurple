@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // apply this script to basic enemy types
-// script does require you to set theiir movement paths
+// script does require you to set their movement paths
 
 public class G_movements : MonoBehaviour
 {
-    public GameObject PointA;
-    public GameObject PointB;
+    public GameObject PointA; //use empty gameobjects for points
+    public GameObject PointB; 
     private Rigidbody2D rb;
     private Animator anim;
     private Transform cPoint;
