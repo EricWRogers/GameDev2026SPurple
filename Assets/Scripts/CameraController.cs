@@ -20,6 +20,15 @@ public class CameraController : MonoBehaviour
         else if (quarter.transform.position.x < transform.position.x - 4) {
             transform.position = new Vector3(quarter.transform.position.x + 4, transform.position.y, transform.position.z);
         }
+
+        if (quarter.transform.position.y > transform.position.y + 2)
+        {
+            transform.position = new Vector3(transform.position.x, quarter.transform.position.y - 2, transform.position.z); 
+        } 
+        else if (quarter.transform.position.y < transform.position.y - 2)
+        {
+            transform.position = new Vector3(transform.position.x, quarter.transform.position.y + 2, transform.position.z); 
+        } 
     }
 
     public void flipFlopSound()
