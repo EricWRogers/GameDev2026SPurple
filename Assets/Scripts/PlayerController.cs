@@ -86,7 +86,8 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.tag == "Enemy" && cooldown <= 0 && !flipped)
         {
             flipFlop.Invoke();
-            Instantiate(corpse, transform.position, transform.rotation);
+            Vector3 corpsePosition = new Vector3(transform.position.x - 0.1f, transform.position.y, transform.position.z);
+            Instantiate(corpse, corpsePosition, transform.rotation);
             flipCooldown = maxFlipCooldown;
             cooldown = maxCooldown;
             deaths++;
