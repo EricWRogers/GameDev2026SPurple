@@ -29,11 +29,12 @@ public class G_movements : MonoBehaviour
         Vector2 point = cPoint.position - transform.position;
         if(cPoint == PointB.transform)
         {
+            rb.linearVelocity= new Vector2(speed, 2);
             rb.linearVelocity= new Vector2(speed, 0);
-
         }
         else
         {
+            rb.linearVelocity = new Vector2(-speed, 2);
             rb.linearVelocity = new Vector2(-speed, 0);
         }
         
@@ -47,7 +48,7 @@ public class G_movements : MonoBehaviour
             cPoint = PointB.transform;
         }
 
-        
+
     }
 
     private void OnDrawGizmos()
