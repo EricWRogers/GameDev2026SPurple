@@ -56,7 +56,9 @@ Assets/Scripts/
  ColliderScript.cs
  CorpseScript.cs
  Door.cs
- EnemyBehavior/G_Movement.cs
+ G_Movement.cs
+ KeyScript.cs
+ MainMenu.cs
  NewMonoBehaviourScript.cs
  PennyAI.cs
  PlayerController.cs
