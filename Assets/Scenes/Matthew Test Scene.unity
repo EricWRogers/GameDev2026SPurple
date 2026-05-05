@@ -290,8 +290,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8013cd1ff5d5d40db8fc1c6fe7dd2df2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
+  audioClips: []
+  flipFlop:
+    m_PersistentCalls:
+      m_Calls: []
+  flipableObjects: []
+  enemies: []
   forceMultiplier: 10
   jumpMultiplier: 20
+  cooldown: 10
+  maxCooldown: 10
+  flipCooldown: 0
+  maxFlipCooldown: 520
+  flipped: 0
+  deaths: 0
+  canvas: {fileID: 0}
+  corpse: {fileID: 0}
+  spriteRenderer: {fileID: 0}
   groundLayer:
     serializedVersion: 2
     m_Bits: 0
@@ -383,6 +398,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
   moveSpeed: 10
+  dashingPower: 24
+  dashingTime: 0.2
+  dashingCooldown: 1
 --- !u!114 &826511940
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -592,7 +610,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -2, z: 0}
-  m_LocalScale: {x: 10, y: 1, z: 1}
+  m_LocalScale: {x: 30, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
