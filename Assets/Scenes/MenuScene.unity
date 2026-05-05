@@ -335,7 +335,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   scene: {}
-  sceneName: Level 1
+  sceneName: Level_1
 --- !u!1 &1088774956
 GameObject:
   m_ObjectHideFlags: 0
