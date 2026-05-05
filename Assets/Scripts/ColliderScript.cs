@@ -1,3 +1,4 @@
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -11,12 +12,12 @@ public class ColliderScript : MonoBehaviour
     [SerializeField]
     private UnityEvent _collisionExit;
 
-    private void OnCollisionEnter2D(Collision2D col)
-    
+    private void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.collider == _playeCollider)
+        if (col.tag == "Player")
         {
             _collsionEntered?.Invoke();
+            Destroy(gameObject);
         }
     }
     private void OnCollisionExit2D(Collision2D col)
